@@ -106,7 +106,7 @@
 
           frontend = buildNpmPackage {
             pname = "react-assessment-frontend";
-            version = "0.1";
+            version = "0.2";
 
             src = ./react-assessment-frontend;
 
