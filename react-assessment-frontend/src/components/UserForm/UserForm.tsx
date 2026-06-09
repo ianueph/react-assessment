@@ -51,6 +51,7 @@ export function UserForm(
     return <>
         <form onSubmit={handleSubmit}>
             <Stack>
+                <h2>Name</h2>
                 <TextInput 
                 name = "Name"
                 value = {name}
@@ -58,6 +59,7 @@ export function UserForm(
                 required
                 />
 
+                <h2>E-mail</h2>
                 <TextInput
                 name = "E-mail"
                 value = {email}
@@ -65,6 +67,7 @@ export function UserForm(
                 required
                 />
 
+                <h2>Contact</h2>
                 <TextInput 
                 name = "Contact"
                 value = {contact}
