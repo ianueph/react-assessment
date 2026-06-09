@@ -1,3 +1,5 @@
+import { ErrorDetails } from "@/components/ErrorDetails/ErrorDetails";
+import { UserDetails } from "@/components/UserDetails/UserDetails";
 import { getUserById } from "@/services/userServices";
 import { User } from "@/types/User"
 import { Button } from "@mantine/core";
@@ -6,27 +8,36 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export function ContactDetails() {
     const [user, setUser] = useState<User>();
+    const [error, setError] = useState<unknown>(null);
     const { id } = useParams();
 
     const navigate = useNavigate();
 
     const loadUser = async () => {
-        if (!id) {return;}
-        const parsedId = parseInt(id);
+        if (!id) return;
 
-        setUser(await getUserById(parsedId));
-    }
+        try {
+            const parsedId = parseInt(id);
+            const response = await getUserById(parsedId);
+
+            setUser(response);
+            setError(null);
+        } catch (err) {
+            setError(err);
+        }
+    };
     
     useEffect(() => {
         loadUser();
-    }, []);
+    }, [id]);
 
     return <>
-        <h1> Id: {user?.id} </h1>
-        <h1> Name: {user?.name} </h1>
-        <h1> Email: {user?.email} </h1>
-        <h1> Contact: {user?.contact} </h1>
-
+        {error ? (
+            <ErrorDetails />
+        ) : (
+            user && <UserDetails user={user} />
+        )}
+        
         <Button onClick={() => {navigate("/")}}> Back </Button>
     </>
 }
