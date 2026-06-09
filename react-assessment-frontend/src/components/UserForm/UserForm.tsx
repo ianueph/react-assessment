@@ -1,14 +1,16 @@
-import { addUser } from "@/services/userServices";
+import { addUser, updateUser } from "@/services/userServices";
 import { User, UserDTO } from "@/types/User";
 import { Button, Group, Stack, TextInput } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type UserFormProps = {
-    onChange: () => Promise<void>
+    onChange: () => Promise<void>,
+    editingUser: User | null,
+    onEdit: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 export function UserForm(
-    {onChange}:
+    {onChange, editingUser, onEdit}:
     UserFormProps
 ) {
     const [name, setName] = useState("");
@@ -18,16 +20,33 @@ export function UserForm(
     const handleSubmit = async (e: React.SubmitEvent) => {
         e.preventDefault();
 
-        const user : UserDTO = {
+        const userDTO : UserDTO = {
             name: name,
             email: email,
             contact: contact,
         }
         
-        const data = await addUser(user);
+        if (editingUser) {
+            const data = await updateUser(editingUser.id, userDTO)
+            onEdit(null);
+        } else {
+            const data = await addUser(userDTO);
+        }
+
+        setName("");
+        setEmail("");
+        setContact("");
 
         await onChange();
     }
+
+    useEffect(() => {
+        if (editingUser) {
+            setName(editingUser.name);
+            setEmail(editingUser.email);
+            setContact(editingUser.contact);
+        }
+    }, [editingUser])
 
     return <>
         <form onSubmit={handleSubmit}>
@@ -54,7 +73,7 @@ export function UserForm(
                 />
 
                 <Group justify="flex-start">
-                    <Button type="submit"> Add / Update </Button>
+                    <Button type="submit"> {editingUser ? "Update" : "Add"} </Button>
                 </Group>
             </Stack>
         </form>

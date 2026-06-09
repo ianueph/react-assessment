@@ -26,7 +26,7 @@ export async function addUser(user: UserDTO) {
 }
 
 export async function updateUser(id: number, user: UserDTO) {
-    const response = await axios.put(apiUrl + `/users/${id}`,
+    const response = await axios.put(apiUrl + `/update/${id}`,
         {
             name: user.name,
             email: user.email,

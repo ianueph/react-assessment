@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 type UserTableProps = {
     users: User[],
-    onChange: () => Promise<void>
+    onChange: () => Promise<void>,
+    onEdit: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 export function UserTable( 
-    {users, onChange}:
+    {users, onChange, onEdit}:
     UserTableProps
 ) {
     const navigate = useNavigate();
@@ -22,6 +23,10 @@ export function UserTable(
         await deleteUser(id);
 
         await onChange();
+    }
+
+    const handleUpdate = async (user: User) => {
+        onEdit(user);
     }
 
     return <Table>
@@ -45,7 +50,7 @@ export function UserTable(
                     <Table.Td> 
                         <Group>
                             <Button onClick={() => {handleView(user.id)}}>View</Button>
-                            <Button >Update</Button>
+                            <Button onClick={() => {handleUpdate(user)}}>Update</Button>
                             <Button onClick={() => {handleDelete(user.id)}}>Delete</Button>
                         </Group>
                     </Table.Td>
