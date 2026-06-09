@@ -1,19 +1,27 @@
+import { deleteUser } from "@/services/userServices";
 import { User } from "@/types/User"
 import { Button, Group, Table } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
 
 type UserTableProps = {
-    users: User[]
+    users: User[],
+    onChange: () => Promise<void>
 }
 
 export function UserTable( 
-    {users}:
+    {users, onChange}:
     UserTableProps
 ) {
     const navigate = useNavigate();
 
-    const handleViewButton = (id: number) => {
+    const handleView = (id: number) => {
         navigate(`/contact-detail/${id}`);
+    }
+
+    const handleDelete = async (id: number) => {
+        await deleteUser(id);
+
+        await onChange();
     }
 
     return <Table>
@@ -36,9 +44,9 @@ export function UserTable(
                     <Table.Td> {user.contact} </Table.Td>
                     <Table.Td> 
                         <Group>
-                            <Button onClick={() => {handleViewButton(user.id)}}>View</Button>
-                            <Button>Update</Button>
-                            <Button>Delete</Button>
+                            <Button onClick={() => {handleView(user.id)}}>View</Button>
+                            <Button >Update</Button>
+                            <Button onClick={() => {handleDelete(user.id)}}>Delete</Button>
                         </Group>
                     </Table.Td>
                 </Table.Tr>

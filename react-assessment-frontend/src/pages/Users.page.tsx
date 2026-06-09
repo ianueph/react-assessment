@@ -17,6 +17,6 @@ export function Users() {
 
     return <>
         <UserForm onChange={loadUsers}/>
-        <UserTable users={users}/>
+        <UserTable onChange={loadUsers} users={users}/>
     </>
 }
