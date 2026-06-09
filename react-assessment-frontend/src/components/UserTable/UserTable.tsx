@@ -36,7 +36,7 @@ export function UserTable(
                 <Table.Td> Name </Table.Td>
                 <Table.Td> E-mail </Table.Td>
                 <Table.Td> Contact </Table.Td>
-                <Table.Td> Buttons </Table.Td>
+                <Table.Td></Table.Td>
             </Table.Tr>
         </Table.Thead>
 
