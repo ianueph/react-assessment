@@ -106,7 +106,7 @@
 
           frontend = buildNpmPackage {
             pname = "react-assessment-frontend";
-            version = "0.2";
+            version = "0.3";
 
             src = ./react-assessment-frontend;
 
@@ -117,10 +117,13 @@
 
               cat <<EOF > $out/bin/react-assessment-frontend
               #!/bin/sh
-              echo "Starting Busybox HTTP server at http://localhost:4200 ... "
-              exec ${busybox}/bin/httpd -f -p 4200 -h $out/share/www
+              echo "Starting SPA server at http://localhost:4200 ..."
+
+              exec ${serve}/bin/serve \
+                -s $out/share/www \
+                -l 4200
               EOF
-              
+
               chmod +x $out/bin/react-assessment-frontend
             '';
 
