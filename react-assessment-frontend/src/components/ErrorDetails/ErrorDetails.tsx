@@ -1,3 +1,4 @@
+import { Title } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 type ErrorDetailsProps = {
@@ -8,7 +9,9 @@ type ErrorDetailsProps = {
 export function ErrorDetails({ message = "Page not found!", onRetry }: ErrorDetailsProps) {
     return (
         <div>
-            <h1>{message}</h1>
+            <Title>
+                {message}
+            </Title>
         </div>
     );
 }
