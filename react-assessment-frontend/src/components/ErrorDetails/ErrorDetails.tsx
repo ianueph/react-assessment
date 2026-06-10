@@ -6,7 +6,7 @@ type ErrorDetailsProps = {
     onRetry?: () => void;
 };
 
-export function ErrorDetails({ message = "Page not found!", onRetry }: ErrorDetailsProps) {
+export function ErrorDetails({ message = "User not found!", onRetry }: ErrorDetailsProps) {
     return (
         <div>
             <Title>

@@ -59,9 +59,20 @@ export function UserCard(
             </Card>
             <Card className={classes.flipCardBack} shadow="sm" padding="md" withBorder>
                 <Stack>
-                    <Button onClick={() => handleView(user.id)}> View </Button>
-                    <Button onClick={() => handleUpdate(user)}> Update </Button>
-                    <Button onClick={() => handleDelete(user.id)}> Delete </Button>
+                    <Button 
+                        variant="outline"
+                        onClick={() => handleView(user.id)}
+                    > View </Button>
+                    <Button 
+                        variant="outline"
+                        color="blue.3"
+                        onClick={() => handleUpdate(user)}
+                    > Update </Button>
+                    <Button 
+                        variant="outline"
+                        color="red.3"
+                        onClick={() => handleDelete(user.id)}
+                    > Delete </Button>
                 </Stack>
             </Card>
         </div>

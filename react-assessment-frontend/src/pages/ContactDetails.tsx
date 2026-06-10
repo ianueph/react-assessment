@@ -58,7 +58,6 @@ export function ContactDetails() {
 
                     <Group mt="xl" justify="flex-end">
                         <Button
-                            variant="light"
                             onClick={() => navigate("/")}
                         >
                             Back

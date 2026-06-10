@@ -50,7 +50,7 @@ export function UserForm(
 
     return <>
         <Flex
-            m='lg'
+            m='xl'
             justify="center"
             align="center"
         >
@@ -88,7 +88,7 @@ export function UserForm(
                     />
 
                     <Group justify="flex-start">
-                        <Button type="submit"> {editingUser ? "Update" : "Add"} </Button>
+                        <Button variant="outline" color="teal.3" type="submit" w="15em" maw="400px" mt="lg"> {editingUser ? "Update" : "Add"} </Button>
                     </Group>
                 </Stack>
             </form>

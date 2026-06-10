@@ -28,10 +28,12 @@ export function Users() {
             m="xl"
             style={{overflow:"hidden"}}
         >
-            <Grid>
-
+            <Grid gap={0}>
                 <Grid.Col 
                     span = {{ base: 12, sm: 5, md: 4, lg: 3 }}
+                    style={{
+                        backgroundColor: "var(--mantine-color-dark-8)"
+                    }}
                 >
                     <UserForm 
                         onEdit={setEditingUser} 
@@ -42,6 +44,9 @@ export function Users() {
 
                 <Grid.Col 
                     span = {{ base: 12, sm: 7, md: 8, lg: 9 }}
+                    style={{
+                        backgroundColor: "var(--mantine-color-dark-7)"
+                    }}
                 >
                     <UserCardGrid
                         users={users}
