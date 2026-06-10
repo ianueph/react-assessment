@@ -1,5 +1,5 @@
 import { User } from "@/types/User";
-import { Button, Card, Flex, Image, Stack, Text } from "@mantine/core";
+import { Button, Card, Flex, Group, Image, Stack, Text } from "@mantine/core";
 import classes from "./UserCard.module.css"
 import { UserCardProps } from "./UserCardTypes";
 import { useNavigate } from "react-router-dom";
@@ -49,19 +49,27 @@ export function UserCard(
                     justify="flex-start"
                     align="flex-start"
                     direction="column"
+                    maw="100%"
+                    w="100%"
                 >
-                    <Text fw="bold">
+                    <Text fw="bold" truncate="end" w="100%" style={{ minWidth: 0 }} ta="left">
                         {user.name}
                     </Text>
 
-                    <Text c="dimmed">
+                    <Text c="dimmed" truncate="end" w="100%" style={{ minWidth: 0 }} ta="left">
                         {user.email}
                     </Text>
 
-                    <Text c="dimmed">
+                    <Text c="dimmed" truncate="end" w="100%" style={{ minWidth: 0 }} ta="left">
                         {user.contact}
                     </Text>
                 </Flex>
+
+                <Group justify="flex-end" w="100%" mt="xs">
+                    <Text size="xs" c="dimmed">
+                        #{user.id}
+                    </Text>
+                </Group>
             </Card>
             <Card className={classes.flipCardBack} shadow="sm" padding="md" withBorder radius="md">
                 <Stack>
