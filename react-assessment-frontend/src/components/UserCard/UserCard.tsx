@@ -2,13 +2,31 @@ import { User } from "@/types/User";
 import { Button, Card, Flex, Image, Stack, Text } from "@mantine/core";
 import classes from "./UserCard.module.css"
 import { UserCardProps } from "./UserCardTypes";
+import { useNavigate } from "react-router-dom";
+import { deleteUser } from "@/services/userServices";
 
 export function UserCard(
     {
         user,
+        onChange,
         onEdit
     } : UserCardProps
 ) {
+    const navigate = useNavigate();
+
+    const handleView = (id: number) => {
+        navigate(`/contact-detail/${id}`);
+    }
+
+    const handleDelete = async (id: number) => {
+        await deleteUser(id);
+
+        await onChange();
+    }
+
+    const handleUpdate = async (user: User) => {
+        onEdit(user);
+    }
 
     return <div className={classes.flipCard}>
         <div className={classes.flipCardInner}>
@@ -41,9 +59,9 @@ export function UserCard(
             </Card>
             <Card className={classes.flipCardBack} shadow="sm" padding="md" withBorder>
                 <Stack>
-                    <Button> View </Button>
-                    <Button> Update </Button>
-                    <Button> Delete </Button>
+                    <Button onClick={() => handleView(user.id)}> View </Button>
+                    <Button onClick={() => handleUpdate(user)}> Update </Button>
+                    <Button onClick={() => handleDelete(user.id)}> Delete </Button>
                 </Stack>
             </Card>
         </div>

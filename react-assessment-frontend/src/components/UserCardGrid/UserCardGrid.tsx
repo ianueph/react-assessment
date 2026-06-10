@@ -21,6 +21,7 @@ export function UserCardGrid(
                     >
                         <UserCard
                             user={user}
+                            onChange={onChange}
                             onEdit={onEdit}
                         />
                     </Flex>
