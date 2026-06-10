@@ -4,6 +4,7 @@ import classes from "./UserCard.module.css"
 import { UserCardProps } from "./UserCardTypes";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "@/services/userServices";
+import defaultPfp from "./Default_pfp.svg"
 
 export function UserCard(
     {
@@ -30,10 +31,15 @@ export function UserCard(
 
     return <div className={classes.flipCard}>
         <div className={classes.flipCardInner}>
-            <Card className={classes.flipCardFront} shadow="sm" padding="md" withBorder>
-                <Card.Section>
+            <Card className={classes.flipCardFront} shadow="sm" padding="md" withBorder radius="md">
+                <Card.Section
+                    mb="md"
+                    style={{
+                        borderBottom: "1px solid var(--mantine-color-dark-1)"
+                    }}
+                >
                     <Image
-                        src=""
+                        src={defaultPfp}
                         height={160}
                         alt="some dude"
                     />
@@ -57,7 +63,7 @@ export function UserCard(
                     </Text>
                 </Flex>
             </Card>
-            <Card className={classes.flipCardBack} shadow="sm" padding="md" withBorder>
+            <Card className={classes.flipCardBack} shadow="sm" padding="md" withBorder radius="md">
                 <Stack>
                     <Button 
                         variant="outline"
