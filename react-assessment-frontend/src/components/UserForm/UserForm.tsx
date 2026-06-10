@@ -1,6 +1,6 @@
 import { addUser, updateUser } from "@/services/userServices";
 import { User, UserDTO } from "@/types/User";
-import { Button, Group, Stack, TextInput } from "@mantine/core";
+import { Button, Container, Flex, Group, Stack, TextInput, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 type UserFormProps = {
@@ -49,36 +49,49 @@ export function UserForm(
     }, [editingUser])
 
     return <>
-        <form onSubmit={handleSubmit}>
-            <Stack>
-                <h2>Name</h2>
-                <TextInput 
-                name = "Name"
-                value = {name}
-                onChange = {(e) => {setName(e.target.value)}}
-                required
-                />
+        <Flex
+            m='lg'
+            justify="center"
+            align="center"
+        >
+            <form 
+                style = {{
+                    width: "100%",
+                    maxWidth: "500px",
+                    margin: "0 auto",
+                }}
+                onSubmit={handleSubmit}
+            >
+                <Stack>
+                    <Title order={2}>Name</Title>
+                    <TextInput 
+                        name = "Name"
+                        value = {name}
+                        onChange = {(e) => {setName(e.target.value)}}
+                        required
+                    />
 
-                <h2>E-mail</h2>
-                <TextInput
-                name = "E-mail"
-                value = {email}
-                onChange = {(e) => {setEmail(e.target.value)}}
-                required
-                />
+                    <Title order={2}>E-mail</Title>
+                    <TextInput
+                        name = "E-mail"
+                        value = {email}
+                        onChange = {(e) => {setEmail(e.target.value)}}
+                        required
+                    />
 
-                <h2>Contact</h2>
-                <TextInput 
-                name = "Contact"
-                value = {contact}
-                onChange = {(e) => {setContact(e.target.value)}}
-                required
-                />
+                    <Title order={2}>Contact</Title>
+                    <TextInput 
+                        name = "Contact"
+                        value = {contact}
+                        onChange = {(e) => {setContact(e.target.value)}}
+                        required
+                    />
 
-                <Group justify="flex-start">
-                    <Button type="submit"> {editingUser ? "Update" : "Add"} </Button>
-                </Group>
-            </Stack>
-        </form>
+                    <Group justify="flex-start">
+                        <Button type="submit"> {editingUser ? "Update" : "Add"} </Button>
+                    </Group>
+                </Stack>
+            </form>
+        </Flex>
     </>
 }
