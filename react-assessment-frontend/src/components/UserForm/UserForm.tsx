@@ -63,7 +63,7 @@ export function UserForm(
                 onSubmit={handleSubmit}
             >
                 <Stack>
-                    <Title order={2}>Name</Title>
+                    <Title order={3}>Name</Title>
                     <TextInput 
                         name = "Name"
                         value = {name}
@@ -71,7 +71,7 @@ export function UserForm(
                         required
                     />
 
-                    <Title order={2}>E-mail</Title>
+                    <Title order={3}>E-mail</Title>
                     <TextInput
                         name = "E-mail"
                         value = {email}
@@ -79,7 +79,7 @@ export function UserForm(
                         required
                     />
 
-                    <Title order={2}>Contact</Title>
+                    <Title order={3}>Contact</Title>
                     <TextInput 
                         name = "Contact"
                         value = {contact}
