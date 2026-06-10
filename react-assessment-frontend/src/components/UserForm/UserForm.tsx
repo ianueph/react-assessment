@@ -77,6 +77,7 @@ export function UserForm(
                         value = {email}
                         onChange = {(e) => {setEmail(e.target.value)}}
                         required
+                        type="email"
                     />
 
                     <Title order={3}>Contact</Title>
