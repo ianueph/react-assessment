@@ -1,7 +1,10 @@
+import { UserCard } from "@/components/UserCard/UserCard";
+import { UserCardGrid } from "@/components/UserCardGrid/UserCardGrid";
 import { UserForm } from "@/components/UserForm/UserForm";
 import { UserTable } from "@/components/UserTable/UserTable";
 import { getUsers } from "@/services/userServices";
 import { User } from "@/types/User"
+import { Grid } from "@mantine/core";
 import { useEffect, useState } from "react"
 
 export function Users() {
@@ -17,7 +20,23 @@ export function Users() {
     }, []);
 
     return <>
-        <UserForm onEdit={setEditingUser} onChange={loadUsers} editingUser={editingUser}/>
-        <UserTable onEdit={setEditingUser} onChange={loadUsers} users={users}/>
+        <Grid m="xl">
+
+            <Grid.Col span = {{ base: 12, sm: 5, md: 4, lg: 3 }}>
+                <UserForm 
+                    onEdit={setEditingUser} 
+                    onChange={loadUsers} 
+                    editingUser={editingUser}
+                />
+            </Grid.Col>
+
+            <Grid.Col span = {{ base: 12, sm: 7, md: 8, lg: 9 }}>
+                <UserCardGrid
+                    users={users}
+                    onChange={loadUsers}
+                    onEdit={setEditingUser}
+                />
+            </Grid.Col>
+        </Grid>
     </>
 }
